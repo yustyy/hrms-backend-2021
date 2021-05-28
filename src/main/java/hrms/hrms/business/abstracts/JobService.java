@@ -2,13 +2,15 @@ package hrms.hrms.business.abstracts;
 
 import java.util.List;
 
-import hrms.hrms.entities.concretes.Job;
+import hrms.hrms.core.utilities.results.DataResult;
+import hrms.hrms.core.utilities.results.Result;
+import hrms.hrms.entities.concretes.JobPosition;
 
 public interface JobService {
-	void add(Job job);
-	void update(Job job);
-	void delete(Job job);
+	Result add(JobPosition jobPosition);
 	
-	List<Job> getAll();
-	Job get(int id);
+	DataResult<List<JobPosition>> getAll();
+	DataResult<JobPosition> get(int id);
+	
+	
 }

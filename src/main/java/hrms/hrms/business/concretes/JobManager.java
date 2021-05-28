@@ -6,46 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hrms.hrms.business.abstracts.JobService;
-import hrms.hrms.dataAccess.abstracts.JobDao;
-import hrms.hrms.entities.concretes.Job;
+import hrms.hrms.core.utilities.results.DataResult;
+import hrms.hrms.core.utilities.results.Result;
+import hrms.hrms.core.utilities.results.SuccessDataResult;
+import hrms.hrms.core.utilities.results.SuccessResult;
+import hrms.hrms.dataAccess.abstracts.JobPositionDao;
+import hrms.hrms.entities.concretes.JobPosition;
 
 @Service
 public class JobManager implements JobService {
 
-	JobDao jobDao;
+	JobPositionDao jobPositionDao;
 	
 	@Autowired
-	public JobManager(JobDao jobDao) {
+	public JobManager(JobPositionDao jobPositionDao) {
 		super();
-		this.jobDao = jobDao;
+		this.jobPositionDao = jobPositionDao;
 	}
 
 	@Override
-	public void add(Job job) {
-		jobDao.save(job);
+	public Result add(JobPosition job) {
+		jobPositionDao.save(job);
+		return new SuccessResult("İş başarıyla eklendi!");
 		
 	}
 
 	@Override
-	public void update(Job job) {
-		//
-		
+	public DataResult<List<JobPosition>> getAll() {
+		return new SuccessDataResult<List<JobPosition>>(jobPositionDao.findAll(), "Tüm işler getirildi!");
 	}
 
 	@Override
-	public void delete(Job job) {
-		jobDao.delete(job);
-		
-	}
-
-	@Override
-	public List<Job> getAll() {
-		return jobDao.findAll();
-	}
-
-	@Override
-	public Job get(int id) {
-		return jobDao.findById(id).get();
+	public DataResult<JobPosition> get(int id) {
+		return new SuccessDataResult<JobPosition>(jobPositionDao.findById(id).get(), id+" idli iş getirildi!");
 	}
 
 }
