@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import hrms.hrms.business.abstracts.JobAdvertService;
 import hrms.hrms.core.utilities.results.DataResult;
 import hrms.hrms.core.utilities.results.Result;
+import hrms.hrms.entities.concretes.Employer;
 import hrms.hrms.entities.concretes.JobAdvert;
 
 @RestController
@@ -41,4 +42,18 @@ public class JobAdvertsController {
 		return jobAdvertService.getById(id);
 	}
 	
+	@GetMapping("/getallbyisopen")
+	public DataResult<List<JobAdvert>> getAllByIsOpen(@RequestParam boolean isOpen){
+		return jobAdvertService.getAllByIsOpen(isOpen);
+	}
+	
+	@GetMapping("/getAllByIsOpenOrderByPublishedAtDesc")
+	public DataResult<List<JobAdvert>> getAllByIsOpenOrderByPublishedAtDesc(@RequestParam boolean isOpen){
+		return jobAdvertService.getAllByIsOpenOrderByPublishedAtDesc(isOpen);
+	}
+	
+	@GetMapping("/getAllByEmployer")
+	public DataResult<List<JobAdvert>> getAllByEmployerId(@RequestParam int employerId){
+		return jobAdvertService.getAllByEmployerId(employerId);
+	}
 }

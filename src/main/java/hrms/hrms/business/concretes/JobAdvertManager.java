@@ -11,6 +11,7 @@ import hrms.hrms.core.utilities.results.Result;
 import hrms.hrms.core.utilities.results.SuccessDataResult;
 import hrms.hrms.core.utilities.results.SuccessResult;
 import hrms.hrms.dataAccess.abstracts.JobAdvertDao;
+import hrms.hrms.entities.concretes.Employer;
 import hrms.hrms.entities.concretes.JobAdvert;
 
 @Service
@@ -38,6 +39,21 @@ public class JobAdvertManager implements JobAdvertService {
 	@Override
 	public DataResult<JobAdvert> getById(int id) {
 		return new SuccessDataResult<JobAdvert>(jobAdvertDao.findById(id).get(), id+" idli data getirildi!");
+	}
+
+	@Override
+	public DataResult<List<JobAdvert>> getAllByIsOpen(boolean isOpen) {
+		return new SuccessDataResult<List<JobAdvert>>(jobAdvertDao.getAllByIsOpen(isOpen), "Tüm data getirildi!");
+	}
+
+	@Override
+	public DataResult<List<JobAdvert>> getAllByIsOpenOrderByPublishedAtDesc(boolean isOpen) {
+		return new SuccessDataResult<List<JobAdvert>>(jobAdvertDao.getAllByIsOpenOrderByPublishedAtDesc(isOpen), "Tüm data getirildi!");
+	}
+
+	@Override
+	public DataResult<List<JobAdvert>> getAllByEmployerId(int employerId) {
+		return new SuccessDataResult<List<JobAdvert>>(jobAdvertDao.getAllByEmployerId(employerId), "Tüm data getirildi!");
 	}
 
 }
