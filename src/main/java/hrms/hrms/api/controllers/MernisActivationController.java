@@ -42,7 +42,7 @@ public class MernisActivationController {
 	}
 	
 	@GetMapping("/getbyuserid")
-	public DataResult<MernisActivation> getByUserId(int userId){
+	public DataResult<MernisActivation> getByUserId(@RequestParam int userId){
 		return mernisActivationService.getByUserId(userId);
 	}
 	

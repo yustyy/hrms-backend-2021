@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hrms.hrms.business.abstracts.JobSeekerService;
@@ -31,7 +32,7 @@ public class JobSeekersController {
 	}
 	
 	@GetMapping("/getbyid")
-	public DataResult<JobSeeker> get(int id){
+	public DataResult<JobSeeker> get(@RequestParam int id){
 		return jobSeekerService.getById(id);
 	}
 	

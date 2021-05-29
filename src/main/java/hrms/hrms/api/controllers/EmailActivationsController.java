@@ -3,6 +3,7 @@ package hrms.hrms.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hrms.hrms.business.abstracts.EmailActivationService;
@@ -20,7 +21,7 @@ public class EmailActivationsController {
 	}
 	
 	@GetMapping("/verify")
-	public Result verify(String email, String authToken) {
+	public Result verify(@RequestParam String email,@RequestParam String authToken) {
 		return emailActivationService.verify(email, authToken);
 	}
 	
