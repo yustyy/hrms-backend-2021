@@ -1,5 +1,6 @@
 package hrms.hrms.business.concretes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class CompanyStaffVerificationManager implements CompanyStaffVerification
 		
 		companyStaffVerification.setCompanyStaff(companyStaff);
 		companyStaffVerification.setApproved(true);
+		companyStaffVerification.setApprovalDate(LocalDateTime.now());
 		add(companyStaffVerification);
 		
 		return new SuccessResult("Başarılı!");

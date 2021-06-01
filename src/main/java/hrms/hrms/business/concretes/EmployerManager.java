@@ -34,10 +34,7 @@ public class EmployerManager implements EmployerService {
 	public Result add(Employer employer) {
 		employerDao.save(employer);
 		
-		CompanyStaffVerification companyStaffVerification = new CompanyStaffVerification(0, false, employer, null);
-		
-		companyStaffVerificationService.add(companyStaffVerification);
-		
+		companyStaffVerificationService.add(CompanyStaffVerification.builder().user(employer).build());
 		
 		
 		return new SuccessResult("Başarılı!");
