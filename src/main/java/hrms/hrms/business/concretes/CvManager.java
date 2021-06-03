@@ -41,4 +41,9 @@ public class CvManager implements CvService {
 		return new SuccessDataResult<List<Cv>>(cvDao.findAll(), "Tüm data getirildi!");
 	}
 
+	@Override
+	public DataResult<List<Cv>> getByUserId(int userId) {
+		return new SuccessDataResult<List<Cv>>(cvDao.getByUserId(userId), userId+" idli kullanıcının tüm cvleri getirildi!");
+	}
+
 }

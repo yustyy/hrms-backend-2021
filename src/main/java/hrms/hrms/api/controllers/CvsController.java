@@ -39,5 +39,10 @@ public class CvsController {
 	public DataResult<List<Cv>> getAll(){
 		return cvService.getAll();
 	}
+	
+	@GetMapping("/getbyuserid")
+	public DataResult<List<Cv>> getByUserId(int userId){
+		return cvService.getByUserId(userId);
+	}
 
 }

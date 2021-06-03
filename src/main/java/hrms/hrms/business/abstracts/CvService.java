@@ -13,6 +13,8 @@ public interface CvService {
 	
 	DataResult<List<Cv>> getAll();
 	
+	DataResult<List<Cv>> getByUserId(int userId);
+	
 	
 
 }
