@@ -1,6 +1,5 @@
 package hrms.hrms.entities.concretes;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,24 +26,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "education_details")
-public class EducationDetail {
-
+@Table(name = "images")
+public class Image {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	
-	@NotNull
-	@Column(name = "start_date")
-	private Date startDate;
-	
-	@Column(name = "end_date")
-	private Date endDate;
-	
-	@NotNull
-	@Column(name = "is_graduated", columnDefinition = "boolean default false")
-	private boolean isGraduated = false;
 	
 	@NotNull
 	@OneToOne(optional = true)
@@ -51,12 +40,12 @@ public class EducationDetail {
 	private User user;
 	
 	@NotNull
-	@OneToOne(optional = true)
-	@JoinColumn(name = "school_id")
-	private School school;
+	@NotBlank
+	@Column(name = "url")
+	private String url;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "educationDetails")
+	@ManyToMany(mappedBy = "profileImages")
 	private List<Cv> cv;
-	
+
 }

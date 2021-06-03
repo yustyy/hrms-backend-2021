@@ -1,6 +1,7 @@
 package hrms.hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +35,6 @@ public class JobExperience {
 	private int id;
 	
 	@NotNull
-	@NotBlank
 	@OneToOne(optional = true)
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -41,12 +45,10 @@ public class JobExperience {
 	private String worplaceName;
 	
 	@NotNull
-	@NotBlank
 	@OneToOne(optional = true)
 	@JoinColumn(name = "job_position_id")
 	private JobPosition jobPosition;
 	
-	@NotBlank
 	@NotNull
 	@Column(name = "start_date")
 	private Date startDate;
@@ -54,10 +56,13 @@ public class JobExperience {
 	@Column(name = "leave_date")
 	private Date leaveDate;
 	
-	@NotBlank
 	@NotNull
 	@Column(name = "is_active", columnDefinition = "boolean default false")
 	private boolean isActive = false;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "jobExperiences")
+	private List<Cv> cv;
 	
 	
 	

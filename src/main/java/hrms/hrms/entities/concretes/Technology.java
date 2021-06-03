@@ -1,6 +1,5 @@
 package hrms.hrms.entities.concretes;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,37 +24,20 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "education_details")
-public class EducationDetail {
-
+@Table(name = "technologies")
+public class Technology {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
+	@NotBlank
 	@NotNull
-	@Column(name = "start_date")
-	private Date startDate;
-	
-	@Column(name = "end_date")
-	private Date endDate;
-	
-	@NotNull
-	@Column(name = "is_graduated", columnDefinition = "boolean default false")
-	private boolean isGraduated = false;
-	
-	@NotNull
-	@OneToOne(optional = true)
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-	@NotNull
-	@OneToOne(optional = true)
-	@JoinColumn(name = "school_id")
-	private School school;
-	
+	@Column(name = "technology_name")
+	private String technologyName;
+
 	@JsonIgnore
-	@ManyToMany(mappedBy = "educationDetails")
+	@ManyToMany(mappedBy = "technologies")
 	private List<Cv> cv;
-	
 }
